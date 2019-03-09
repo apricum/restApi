@@ -40,5 +40,12 @@ public class CustomerService {
         return customerDBO2DTOMapper.getDestination(customerDAO.saveCustomer(newCustomer));
     }
 
+    @Transactional
+    public List<CustomerDTO> getAllCustomersForAddressId(Integer addressId) {
 
+        List<CustomerDBO> allCustomersForAddressId = customerDAO.getAllCustomersForAddressId(addressId);
+        List<CustomerDTO> resultList = new ArrayList<>();
+        allCustomersForAddressId.stream().forEach(x -> resultList.add(customerDBO2DTOMapper.getDestination(x)));
+        return resultList;
+    }
 }

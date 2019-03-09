@@ -26,4 +26,8 @@ public class CustomerDAO {
 
         return entityManager.merge(customerDBO);
     }
+
+    public List<CustomerDBO> getAllCustomersForAddressId(Integer id){
+        return  entityManager.createQuery("select c from AddressDBO a join a.customers c where a.id = :id",CustomerDBO.class).setParameter("id",id.longValue()).getResultList();
+    }
 }

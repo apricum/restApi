@@ -27,4 +27,10 @@ public class CustomerController {
         return customerService.saveCustomer(firstName,lastName);
     }
 
+    @GetMapping("/address")
+    public List<CustomerDTO> getAllCustomersForAddressId(@RequestParam() Integer addressId){
+        return customerService.getAllCustomersForAddressId(addressId);
+
+    }
+
 }
