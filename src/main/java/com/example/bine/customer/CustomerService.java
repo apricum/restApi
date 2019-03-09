@@ -1,5 +1,6 @@
 package com.example.bine.customer;
 
+import com.example.bine.annotations.Timed;
 import com.googlecode.jmapper.JMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ public class CustomerService {
     @Autowired
     private JMapper<CustomerDBO, CustomerDTO> customerDTO2DBOMapper;
 
+    @Timed
     @Transactional
     public List<CustomerDTO> getAllCustomers(){
 
@@ -40,6 +42,7 @@ public class CustomerService {
         return customerDBO2DTOMapper.getDestination(customerDAO.saveCustomer(newCustomer));
     }
 
+    @Timed
     @Transactional
     public List<CustomerDTO> getAllCustomersForAddressId(Integer addressId) {
 
