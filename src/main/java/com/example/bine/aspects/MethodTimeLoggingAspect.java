@@ -7,11 +7,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Aspect
-public class MDCLoggingAspect {
+public class MethodTimeLoggingAspect {
 
-    private static Logger LOGGER = LoggerFactory.getLogger(MDCLoggingAspect.class);
+    private static Logger LOGGER = LoggerFactory.getLogger(MethodTimeLoggingAspect.class);
 
-    @Around("@annotation(com.example.bine.annotations.MDCLog)")
+    @Around("@annotation(com.example.bine.annotations.Timed)")
     public Object time(ProceedingJoinPoint invocation) throws Throwable{
 
         long start = System.currentTimeMillis();
