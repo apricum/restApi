@@ -1,5 +1,6 @@
 package com.example.bine.configuration;
 
+import com.example.bine.aspects.MethodMDCLoggingAspect;
 import com.example.bine.aspects.MethodTimeLoggingAspect;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,5 +13,10 @@ public class BeanConfiguration {
     @Bean
     public MethodTimeLoggingAspect timer(){
         return new MethodTimeLoggingAspect();
+    }
+
+    @Bean
+    public MethodMDCLoggingAspect mdcLogger(){
+        return new MethodMDCLoggingAspect();
     }
 }

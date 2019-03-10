@@ -1,6 +1,7 @@
 package com.example.bine.customer;
 
 
+import com.example.bine.annotations.MDCLogged;
 import com.example.bine.annotations.Timed;
 import com.googlecode.jmapper.JMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class CustomerService {
     @Autowired
     private JMapper<CustomerDBO, CustomerDTO> customerDTO2DBOMapper;
 
-    @Timed
+    @MDCLogged(putLabels = {"firstName","lastName"},removeLabels = {"country"})
     @Transactional
     public List<CustomerDTO> getAllCustomers(){
 
