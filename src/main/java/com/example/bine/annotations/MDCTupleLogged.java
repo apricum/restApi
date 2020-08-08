@@ -7,9 +7,8 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface MDCLogged {
+public @interface MDCTupleLogged {
+    String label() default "";
+    String value() default "";
 
-     MDCTupleLogged[] labelsAndValues() default {};
-//    String[] putLabels() default "";
-//    String[] removeLabels() default "";
 }

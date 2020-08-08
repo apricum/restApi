@@ -2,6 +2,7 @@ package com.example.bine.customer;
 
 
 import com.example.bine.annotations.MDCLogged;
+import com.example.bine.annotations.MDCTupleLogged;
 import com.example.bine.annotations.Timed;
 import com.googlecode.jmapper.JMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +23,11 @@ public class CustomerService {
     @Autowired
     private JMapper<CustomerDBO, CustomerDTO> customerDTO2DBOMapper;
 
-    @MDCLogged(putLabels = {"firstName","lastName"},removeLabels = {"country"})
+    //@MDCLogged(putLabels = {"firstName","lastName"},removeLabels = {"country"})
+    @MDCLogged(labelsAndValues = {@MDCTupleLogged(label = "firstName",value = "Bine")})
     @Transactional
     public List<CustomerDTO> getAllCustomers(){
+
 
         List<CustomerDBO> customers =  customerDAO.getAllCustomers();
         List<CustomerDTO> resultListOfCustomers = new ArrayList<>();
@@ -42,6 +45,11 @@ public class CustomerService {
         newCustomer.setLastName(lastName);
 
         return customerDBO2DTOMapper.getDestination(customerDAO.saveCustomer(newCustomer));
+    }
+
+    @MDCLogged(labelsAndValues = {@MDCTupleLogged(label = "firstName",value = "Bine")})
+    public void addLogging(String label, String value){
+
     }
 
     @Timed
